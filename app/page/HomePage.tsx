@@ -7,6 +7,7 @@ import Link from "next/link";
 import logo from "@/public/images/logo.png";
 import bg from "@/public/images/spiral2.svg";
 import SplashScreen from "../components/SplashScreen";
+
 import CharBlue from "@/public/images/char-1-blue.png";
 import Text1 from '@/public/images/text-1.png'
 import Text2 from '@/public/images/text-2.png'
@@ -14,6 +15,8 @@ import TextHome from '@/public/images/text-home.png'
 import TextWorks from '@/public/images/text-works.png'
 import TextContent from '@/public/images/text-contact.png'
 import ClockSwing from "../components/ClockSwing";
+
+import Popup from '@/public/images/popup.png'
 
 export default function HomePage() {
   return (
@@ -23,23 +26,27 @@ export default function HomePage() {
       </div>
 
       <div className="z-10 w-screen h-screen relative overflow-hidden">
+        {/* <SpiralScene /> */}
         <Image
           src={bg}
           alt="bg"
-          className="w-full block absolute left-0 top-0 bottom-0 right-0"
+          className="w-full h-full object-cover block absolute left-0 top-0 bottom-0 right-0"
         />
-        <header className="fixed left-[66px] top-[52px]">
+         <header className="fixed left-[66px] top-[52px]">
           <Image src={logo} alt="logo" />
         </header>
         {/* content */}
         <div>
           {/* anh */}
-          <div className="2xl:w-[65%] sm:w-[60%] w-[60%] absolute -left-[7%] -bottom-[6%]">
+          <div className="z-10 2xl:w-[65%] sm:w-[55%] w-[55%] absolute -left-[7%] -bottom-[6%]">
+            <div className="group">
             <Image  src={CharBlue} alt="char-blue" />
+            <Image src={Popup} alt="popup" className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 2xl:w-[45%] w-[40%] absolute right-[10%] -top-[25%]" />
+            </div>
             <ClockSwing />
           </div>
           {/* thong tin */}
-          <div className="w-[50%] absolute right-12 top-28 font-">
+          <div className="z-20 w-[50%] absolute right-12 top-28 font-">
             <div className="">
             <Image className="" src={Text1} alt="" />
             </div>
