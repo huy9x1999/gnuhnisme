@@ -16,6 +16,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onLoadingComplete }) => {
   useEffect(() => {
     if (isLoading) {
       const tl = gsap.timeline({
+        delay:1,
         onComplete: () => {
           setIsLoading(false);
           onLoadingComplete?.();
