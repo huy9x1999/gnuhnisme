@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useAnimate } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useAnimate } from "framer-motion";
 import Image from "next/image";
 import anh1 from "@/public/images/anh1.svg";
 import anh2 from "@/public/images/anh2.svg";
@@ -169,12 +169,17 @@ export default function Spiral() {
         ))}
       </div>
 
-      {/* Images positioned near center circle - Hardware accelerated */}
+      {/* Images positioned in arc: anh1(0°) -> anh2(60°) -> anh3(120°) -> anh4(180°) */}
       <div className="absolute inset-0 flex items-center justify-center contain-layout">
-        <div className="relative w-[400px] h-[400px]">
+        <div className="relative w-full h-full">
+          {/* anh1.svg - bottom left */}
           <div
-            className="spiral-img opacity-0 absolute -top-20 left-1/2 -translate-x-1/2 w-[120px] h-[120px] transform-gpu"
-            style={{ backfaceVisibility: "hidden" }}
+            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
+            style={{
+              backfaceVisibility: "hidden",
+              top: "40%",
+              left: "10%",
+            }}
           >
             <Image
               src={anh1}
@@ -184,9 +189,14 @@ export default function Spiral() {
             />
           </div>
 
+          {/* anh2.svg - top middle-left */}
           <div
-            className="spiral-img opacity-0 absolute top-1/2 -right-20 -translate-y-1/2 w-[120px] h-[120px] transform-gpu"
-            style={{ backfaceVisibility: "hidden" }}
+            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
+            style={{
+              backfaceVisibility: "hidden",
+              top: "10%",
+              left: "30%",
+            }}
           >
             <Image
               src={anh2}
@@ -196,9 +206,14 @@ export default function Spiral() {
             />
           </div>
 
+          {/* anh3.svg - top right */}
           <div
-            className="spiral-img opacity-0 absolute -bottom-20 left-1/2 -translate-x-1/2 w-[120px] h-[120px] transform-gpu"
-            style={{ backfaceVisibility: "hidden" }}
+            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
+            style={{
+              backfaceVisibility: "hidden",
+              top: "10%",
+              right: "30%",
+            }}
           >
             <Image
               src={anh3}
@@ -208,9 +223,14 @@ export default function Spiral() {
             />
           </div>
 
+          {/* anh4.svg - bottom right */}
           <div
-            className="spiral-img opacity-0 absolute top-1/2 -left-20 -translate-y-1/2 w-[120px] h-[120px] transform-gpu"
-            style={{ backfaceVisibility: "hidden" }}
+            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
+            style={{
+              backfaceVisibility: "hidden",
+              top: "40%",
+              right: "10%",
+            }}
           >
             <Image
               src={anh4}
