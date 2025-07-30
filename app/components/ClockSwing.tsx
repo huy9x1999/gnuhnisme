@@ -43,7 +43,7 @@ export default function ClockSwing() {
   }, []);
 
   return (
-    <div className="absolute 2xl:right-[4%] right-[0] top-[34%] z-20 w-[8%]">
+    <div className="bg-[#F49AC1] absolute 2xl:right-[4%] right-[0] top-[34%] z-20 w-[8%]">
       
       {/* Shadow (blur + trễ) */}
       <div
