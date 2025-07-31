@@ -19,7 +19,7 @@ export default function HeroSection() {
       <SplashScreen />
 
       <div  className="min-h-screen w-full relative scroll-section overflow-x-hidden">
-        <Image src={bg} alt="char-blue" className="w-full h-full absolute top-0 left-0 right-0 bottom-0" />
+        <Image src={bg} alt="char-blue" className="-z-10 w-full h-full absolute top-0 left-0 right-0 bottom-0" />
         <div
           className="left-image relative -left-[7%] mt-[50vh] z-10 2xl:w-[65%] w-[52%]"
          >
