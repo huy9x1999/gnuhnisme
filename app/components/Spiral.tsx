@@ -8,7 +8,7 @@ import anh2 from "@/public/images/anh2.png";
 import anh3 from "@/public/images/anh3.svg";
 import anh4 from "@/public/images/anh4.svg";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,38 +34,63 @@ function getSpiralPath(
 export default function Spiral() {
   const containerRef = useRef(null);
   useLayoutEffect(() => {
-      // Text1 - inner spiral
-      gsap.to("#Text1 textPath", {
+    // Text1 - inner spiral
+    gsap.set(".image", {
+      opacity: 0,
+      y: 50,
+    });
+
+    gsap.set("textPath", {
+      opacity: 0,
+    });
+
+    // Tạo timeline chính
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#Text1", // dùng trigger text đầu tiên
+        scroller: ".scroll-container",
+        start: "top-=300 top",
+        end: "bottom center",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.to("#Text1 textPath", {
+      opacity: 1,
+      duration: 0.01, // hoặc dùng .set()
+    });
+    
+    // 1. Animation Text1 chạy trên spiral
+    tl.to("#Text1 textPath", {
+      attr: { startOffset: "100%" },
+      duration: 3,
+      ease: "none",
+    });
+
+    tl.to("#Text2 textPath", {
+      opacity: 1,
+      duration: 0.01, // hoặc dùng .set()
+    }, "-=2.4");
+    // 2. Animation Text2 chạy trên spiral
+    tl.to(
+      "#Text2 textPath",
+      {
         attr: { startOffset: "100%" },
         duration: 3,
         ease: "none",
-        scrollTrigger: {
-          trigger: "#Text1",
-          scroller: ".scroll-container",
-          start: "top-=150 top",
-          end: "bottom center",
-          toggleActions: "play none none none",
-          scrub: false, // giúp offset chạy theo scroll
-          // markers: true,
-        },
-      });
+      },
+      "-=2.4"
+    );
 
-      // Text2 - outer spiral
-      gsap.to("#Text2 textPath", {
-        attr: { startOffset: "100%" },
-        duration: 3,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#Text2",
-          scroller: ".scroll-container",
-          start: () => "top-=" + (window.innerHeight-200)  + " top",
-          end: "bottom center",
-          toggleActions: "play none none none",
-          scrub: false,
-        },
-      });
+    // 3. Sau khi 2 textPath hoàn tất → hiện từng ảnh
+    tl.to(".image", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2, // từng ảnh hiện ra cách nhau
+      ease: "power2.out",
+    });
 
-      
     // Refresh khi layout đã xong
     setTimeout(() => {
       ScrollTrigger.refresh();
@@ -112,11 +137,11 @@ export default function Spiral() {
         </text>
 
         <text id="Text2" fontSize="40" fill="yellow" fontWeight="bold">
-          <textPath href="#outerSpiral">DON'T BLIND!</textPath>
+          <textPath href="#outerSpiral">DON&apos;T BLIND!</textPath>
         </text>
       </svg>
       <div
-        className="spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
+        className="hire spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
         style={{
           backfaceVisibility: "hidden",
           top: "40%",
@@ -131,9 +156,8 @@ export default function Spiral() {
         />
       </div>
       <div
-        className=" spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
+        className="hire spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
         style={{
-          backfaceVisibility: "hidden",
           top: "20%",
           left: "28%",
         }}

@@ -1,4 +1,4 @@
-import HomePage from "./page/HomePage";
+import HomePage from "./page/home";
 import SpiralPage from "./components/SpiralPage";
 import Header from "./components/Header";
 import SupperMenu from "./components/SupperMenu";
@@ -9,14 +9,6 @@ import BackgroundSpiral from "./components/BackgroundSpiral";
 
 export default function Home() {
   return (
-    <div className="relative scroll-container overflow-x-hidden bg-amber-200 w-screen h-screen">
-      <Header />
-      <BackgroundSpiral />
-      <HomePage />
-      <SpiralPage />
-      <CloseLest />
-      <Contact />
-      <SupperMenu /> 
-    </div>
+    <div className="relative scroll-container overflow-x-hidden bg-amber-200 w-screen h-screen"><HomePage/></div>
   );
 }

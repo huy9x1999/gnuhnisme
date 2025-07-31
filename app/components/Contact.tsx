@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Contact = () => {
   return (
-    <div className="relative bg-[#007DC5] w-screen h-screen">
+    <div className="relative bg-[#007DC5] w-full h-screen">
       <div className="w-1/2 absolute left-0 bottom-0">
         <Image className="w-full  " alt="" src={CharPing2} />
       </div>
