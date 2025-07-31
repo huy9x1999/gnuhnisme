@@ -9,6 +9,6 @@ import BackgroundSpiral from "./components/BackgroundSpiral";
 
 export default function Home() {
   return (
-    <div className="relative scroll-container overflow-x-hidden bg-amber-200 w-screen h-screen"><HomePage/></div>
+    <div className="relative scroll-container overflow-x-hidden w-screen h-screen"><HomePage/></div>
   );
 }

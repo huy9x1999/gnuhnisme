@@ -9,6 +9,7 @@ import CharBlue from "@/public/images/char-1-blue.svg";
 import Text1 from "@/public/images/text-1.svg";
 import Text2 from "@/public/images/text-2.svg";
 import Popup from "@/public/images/popup.svg";
+import bg from "@/public/images/spiral.svg";
 import ClockSwing from "../components/ClockSwing";
 
 export default function HeroSection() {
@@ -18,7 +19,7 @@ export default function HeroSection() {
       <SplashScreen />
 
       <div  className="min-h-screen w-full relative scroll-section overflow-x-hidden">
-        {/* Hình bên trái */}
+        <Image src={bg} alt="char-blue" className="w-full h-full absolute top-0 left-0 right-0 bottom-0" />
         <div
           className="left-image relative -left-[7%] mt-[50vh] z-10 2xl:w-[65%] w-[52%]"
          >
