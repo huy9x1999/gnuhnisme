@@ -1,0 +1,52 @@
+
+<div className="z-10 hero-section w-screen h-screen relative overflow-hidden">
+        {/* <SpiralScene /> */}
+        {/* content */}
+        <div>
+          {/* anh */}
+          <motion.div
+            variants={{
+              offscreen: {
+                y: 300,
+              },
+              onscreen: {
+                y: 50,
+                rotate: -10,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 0.8,
+                },
+              },
+            }}
+          >
+            <div
+              ref={charGroupRef}
+              className="character z-10 2xl:w-[65%] w-[52%] absolute -left-[7%] -bottom-[6%]"
+            >
+              <div className="group">
+                <Image src={CharBlue} alt="char-blue" />
+                <Image
+                  src={Popup}
+                  alt="popup"
+                  className="character opacity-0 group-hover:opacity-100 transition-opacity duration-500 2xl:w-[45%] w-[40%] absolute right-[10%] -top-[25%]"
+                />
+              </div>
+              <ClockSwing />
+            </div>
+          </motion.div>
+          {/* thong tin */}
+          <div
+            ref={textGroupRef}
+            className=" z-20 2xl:w-[50%] w-[43%] absolute right-12 2xl:top-28 top-20"
+          >
+            <div className="">
+              <Image className="hero-text" src={Text1} alt="" />
+            </div>
+            <div className="mt-8 pl-[36%]">
+              <Image src={Text2} alt="hero-text" className="" />
+            </div>
+          </div>
+        </div>
+        {/* //menu */}
+      </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,6 +14,7 @@ import ClockSwing from "../components/ClockSwing";
 import Popup from '@/public/images/popup.svg'
 
 export default function HomePage() {
+  
   return (
     <>
       <div className="z-20">

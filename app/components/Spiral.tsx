@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useAnimate } from "framer-motion";
 import Image from "next/image";
 import anh1 from "@/public/images/anh1.svg";
-import anh2 from "@/public/images/anh2.svg";
+import anh2 from "@/public/images/anh2.png";
 import anh3 from "@/public/images/anh3.svg";
 import anh4 from "@/public/images/anh4.svg";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function getSpiralPath(
   cx: number,
@@ -29,217 +33,150 @@ function getSpiralPath(
 }
 
 export default function Spiral() {
-  const [scope, animate] = useAnimate();
-  const [showText, setShowText] = useState(false);
-  const innerText = "!DNILB T'NOD";
-  const outerText = "LARIPS GNINNIPS EHT TA KOOL";
-
-  // Show text after delay
-  useEffect(() => {
-    const id = setTimeout(() => setShowText(true), 1000);
-    return () => clearTimeout(id);
-  }, []);
-
-  // Ultra-optimized animations with minimal DOM manipulation
-  useEffect(() => {
-    if (!showText || !scope.current) return;
-
-    const animateElements = () => {
-      // Reduce text animation frequency - animate fewer characters
-      const chars = scope.current.querySelectorAll(".char");
-
-      // Only animate every 3rd character to reduce load
-      chars.forEach((char: any, i: number) => {
-        if (i % 3 === 0) {
-          // Only animate every 3rd character
-          animate(
-            char,
-            {
-              opacity: [0, 1, 0],
-              transform: "translateZ(0)", // Keep GPU layer
-            },
-            {
-              duration: 4, // Shorter duration
-              delay: i * 0.03, // Faster stagger
-              ease: "linear",
-            }
-          );
-        } else {
-          // Just fade in other characters without complex animation
-          animate(
-            char,
-            { opacity: [0, 0.7] },
-            { duration: 0.5, delay: i * 0.01 }
-          );
-        }
+  const containerRef = useRef(null);
+  useLayoutEffect(() => {
+      // Text1 - inner spiral
+      gsap.to("#Text1 textPath", {
+        attr: { startOffset: "100%" },
+        duration: 3,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#Text1",
+          scroller: ".scroll-container",
+          start: "top-=150 top",
+          end: "bottom center",
+          toggleActions: "play none none none",
+          scrub: false, // giúp offset chạy theo scroll
+          // markers: true,
+        },
       });
 
-      // Simplified image animations
-      const imgs = scope.current.querySelectorAll(".spiral-img");
-
-      imgs.forEach((img: any, i: number) => {
-        animate(
-          img,
-          {
-            scale: [0.5, 1], // Less dramatic scale change
-            opacity: [0, 1],
-          },
-          {
-            duration: 1.2, // Much faster
-            delay: i * 0.1,
-            ease: "easeOut", // Simple easing
-          }
-        );
+      // Text2 - outer spiral
+      gsap.to("#Text2 textPath", {
+        attr: { startOffset: "100%" },
+        duration: 3,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#Text2",
+          scroller: ".scroll-container",
+          start: () => "top-=" + (window.innerHeight-200)  + " top",
+          end: "bottom center",
+          toggleActions: "play none none none",
+          scrub: false,
+        },
       });
+
+      
+    // Refresh khi layout đã xong
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.killAll();
     };
-
-    // Debounce with shorter delay
-    const timeoutId = setTimeout(animateElements, 100);
-    return () => clearTimeout(timeoutId);
-  }, [showText, scope, animate]);
+  }, []);
 
   return (
     <div
-      ref={scope}
-      className="w-screen h-screen relative overflow-hidden transform-gpu"
+      ref={containerRef}
+      className=" w-screen h-screen relative overflow-hidden transform-gpu"
     >
       {/* SVG Paths */}
       <svg
-        width="70vw"
-        height="70vh"
+        width="100vw"
+        height="100vh"
         viewBox="0 0 600 600"
-        className="absolute inset-0 m-auto transform rotate-23"
-        style={{ willChange: "auto" }}
+        className="absolute inset-0 m-auto"
+        style={{ willChange: "auto", transform: "rotate(26deg)" }}
       >
+        {/* Spiral Path */}
         <path
           id="innerSpiral"
-          d={getSpiralPath(300, 300, 20, 2, 38, 1.2, 0.7)}
+          d={getSpiralPath(300, 300, 30, 1.5, 38, 1.2, 0.8)}
           stroke="none"
           fill="none"
         />
         <path
           id="outerSpiral"
-          d={getSpiralPath(300, 300, 120, 2, 38, -1.2, 0.7)}
+          d={getSpiralPath(280, 280, 40, 1.5, 46, -1.2, 0.5)}
           stroke="none"
           fill="none"
         />
+
+        {/* TEXT chạy theo path */}
+        <text id="Text1" fontSize="40" fill="white" fontWeight="bold">
+          <textPath href="#innerSpiral" startOffset="0%">
+            SEE YOU ON THE INNER SPIRAL
+          </textPath>
+        </text>
+
+        <text id="Text2" fontSize="40" fill="yellow" fontWeight="bold">
+          <textPath href="#outerSpiral">DON'T BLIND!</textPath>
+        </text>
       </svg>
-
-      {/* Inner text - Reduced characters for better performance */}
       <div
-        className={`absolute inset-0 m-auto transform ${
-          showText ? "opacity-100" : "opacity-0"
-        } contain-layout`}
+        className="spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
+        style={{
+          backfaceVisibility: "hidden",
+          top: "40%",
+          left: "7%",
+        }}
       >
-        {innerText.split("").map((c, i) => (
-          <span
-            key={i}
-            className="char absolute text-[28px] font-bold text-yellow-500 transform-gpu"
-            style={{
-              offsetPath: `path('#innerSpiral')`,
-              offsetDistance: `${(i / innerText.length) * 100}%`,
-              backfaceVisibility: "hidden",
-              perspective: "1000px",
-            }}
-          >
-            {c}
-          </span>
-        ))}
+        <Image
+          src={anh1}
+          alt=""
+          className="image w-full h-full object-contain"
+          priority
+        />
+      </div>
+      <div
+        className=" spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
+        style={{
+          backfaceVisibility: "hidden",
+          top: "20%",
+          left: "28%",
+        }}
+      >
+        <Image
+          src={anh2}
+          alt=""
+          className="image w-full h-full object-contain"
+          priority
+        />
       </div>
 
-      {/* Outer text - Simplified */}
       <div
-        className={`absolute inset-0 m-auto transform ${
-          showText ? "opacity-100" : "opacity-0"
-        } contain-layout`}
+        className="spiral-img rotate-[-20deg] 2xl:w-[400px] 2xl:h-[400px] absolute w-[300px] h-[300px] transform-gpu"
+        style={{
+          // backfaceVisibility: "hidden",
+          top: "10%",
+          right: "26%",
+        }}
       >
-        {outerText.split("").map((c, i) => (
-          <span
-            key={i}
-            className="char absolute text-[32px] font-bold text-white transform-gpu"
-            style={{
-              offsetPath: `path('#outerSpiral')`,
-              offsetDistance: `${(i / outerText.length) * 100}%`,
-              backfaceVisibility: "hidden",
-              perspective: "1000px",
-            }}
-          >
-            {c}
-          </span>
-        ))}
+        <Image
+          src={anh3}
+          alt=""
+          className="image w-full h-full object-contain"
+          priority
+        />
       </div>
 
-      {/* Images positioned in arc: anh1(0°) -> anh2(60°) -> anh3(120°) -> anh4(180°) */}
-      <div className="absolute inset-0 flex items-center justify-center contain-layout">
-        <div className="relative w-full h-full">
-          {/* anh1.svg - bottom left */}
-          <div
-            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
-            style={{
-              backfaceVisibility: "hidden",
-              top: "40%",
-              left: "10%",
-            }}
-          >
-            <Image
-              src={anh1}
-              alt=""
-              className="w-full h-full object-contain"
-              priority
-            />
-          </div>
-
-          {/* anh2.svg - top middle-left */}
-          <div
-            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
-            style={{
-              backfaceVisibility: "hidden",
-              top: "10%",
-              left: "30%",
-            }}
-          >
-            <Image
-              src={anh2}
-              alt=""
-              className="w-full h-full object-contain"
-              priority
-            />
-          </div>
-
-          {/* anh3.svg - top right */}
-          <div
-            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
-            style={{
-              backfaceVisibility: "hidden",
-              top: "10%",
-              right: "30%",
-            }}
-          >
-            <Image
-              src={anh3}
-              alt=""
-              className="w-full h-full object-contain"
-              priority
-            />
-          </div>
-
-          {/* anh4.svg - bottom right */}
-          <div
-            className="spiral-img opacity-0 absolute w-[300px] h-[300px] transform-gpu"
-            style={{
-              backfaceVisibility: "hidden",
-              top: "40%",
-              right: "10%",
-            }}
-          >
-            <Image
-              src={anh4}
-              alt=""
-              className="w-full h-full object-contain"
-              priority
-            />
-          </div>
-        </div>
+      <div
+        className="rotate-[20deg] spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
+        style={{
+          backfaceVisibility: "hidden",
+          top: "40%",
+          right: "10%",
+        }}
+      >
+        <Image
+          src={anh4}
+          alt=""
+          className="image w-full h-full object-contain"
+          priority
+        />
       </div>
     </div>
   );
