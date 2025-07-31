@@ -13,7 +13,7 @@ import Header from "../components/Header";
 
 const index = () => {
   return (
-    <div className="w-full">
+    <div className="w-full z-30">
       <Header />
       <div className="bg-[#007DC5] w-full overflow-x-hidden flex justify-center items-center flex-col">
         <div className="pt-[30vh] w-[44%]">
