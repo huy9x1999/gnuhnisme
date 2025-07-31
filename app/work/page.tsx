@@ -14,7 +14,6 @@ import Header from "../components/Header";
 const index = () => {
   return (
     <div className="w-full z-30">
-      <Header />
       <div className="bg-[#007DC5] w-full overflow-x-hidden flex justify-center items-center flex-col">
         <div className="pt-[30vh] w-[44%]">
           <Image src={textWork1} alt="404 Not Found" />
@@ -44,9 +43,8 @@ const index = () => {
             alt="404 Not Found group-hover:bg-[yellow]"
            />
         </div>
+        <Contact />
       </div>
-      <Contact />
-      <SupperMenu />
     </div>
   );
 };

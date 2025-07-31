@@ -32,7 +32,6 @@ export default function RootLayout({
       >
         <div >
       <Header />
-      <BackgroundSpiral />
       {children}
       <SupperMenu /> 
     </div>
