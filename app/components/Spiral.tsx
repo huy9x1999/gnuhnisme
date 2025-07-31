@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import { useAnimate } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import anh1 from "@/public/images/anh1.svg";
 import anh2 from "@/public/images/anh2.png";
