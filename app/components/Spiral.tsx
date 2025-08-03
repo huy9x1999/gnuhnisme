@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
@@ -22,7 +21,8 @@ function getSpiralPath(
   ellipseY = 1
 ) {
   let d = "";
-  for (let t = 0; t <= Math.PI * 2 * turns; t += 0.1) {
+  for (let t = 0; t <= Math.PI * 2 * turns; t += 0.2) {
+    // Tăng bước lên 0.5 để giảm điểm
     const r = startRadius + growth * t;
     const x = cx + ellipseX * r * Math.cos(t);
     const y = cy + ellipseY * r * Math.sin(t);
@@ -33,89 +33,80 @@ function getSpiralPath(
 
 export default function Spiral() {
   const containerRef = useRef(null);
+  const imageRef = useRef(null);
+
   useLayoutEffect(() => {
-    // Text1 - inner spiral
-    gsap.set(".image", {
-      opacity: 0,
-      y: 50,
-    });
+    const ctx = gsap.context(() => {
+      gsap.set(".image", { opacity: 0, y: 50 });
+      gsap.set("textPath", { opacity: 0 });
 
-    gsap.set("textPath", {
-      opacity: 0,
-    });
+      if (!containerRef.current) return;
+      const images = gsap.utils.toArray(".image");
 
-    // Tạo timeline chính
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#Text1", // dùng trigger text đầu tiên
-        scroller: ".scroll-container",
-        start: "top-=300 top",
-        end: "bottom center",
-        toggleActions: "play none none none",
-      },
-    });
+      // Animation cho text
+      const tlText = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          // scroller:"#scroll-container",
+          start: "top",
+          pin: true, // Giữ nguyên vị trí khi cuộn
+          end: "+=50%", // Giảm độ dài để giảm áp lực
+          scrub: 1, // Giảm độ trễ
+        },
+      });
+      tlText
+        .to("#Text1 textPath", { opacity: 1, duration: 0.05, ease: "none" })
+        .to(
+          "#Text1 textPath",
+          {
+            attr: { startOffset: "100%" },
+            duration: 2,
+            ease: "expo.out",
+          },
+          0
+        )
+        .to(
+          "#Text2 textPath",
+          { opacity: 1, duration: 0.05, ease: "power1.out" },
+          0.2
+        )
+        .to(
+          "#Text2 textPath",
+          {
+            attr: { startOffset: "100%" },
+            duration: 2,
+            ease: "expo.out",
+          },
+          0.2
+        )
+        .to(
+          images,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out",
+          },
+          "-=1"
+        );
+    }, containerRef);
 
-    tl.to("#Text1 textPath", {
-      opacity: 1,
-      duration: 0.01, // hoặc dùng .set()
-    });
-    
-    // 1. Animation Text1 chạy trên spiral
-    tl.to("#Text1 textPath", {
-      attr: { startOffset: "100%" },
-      duration: 3,
-      ease: "none",
-    });
-
-    tl.to("#Text2 textPath", {
-      opacity: 1,
-      duration: 0.01, // hoặc dùng .set()
-    }, "-=2.4");
-    // 2. Animation Text2 chạy trên spiral
-    tl.to(
-      "#Text2 textPath",
-      {
-        attr: { startOffset: "100%" },
-        duration: 3,
-        ease: "none",
-      },
-      "-=2.4"
-    );
-
-    // 3. Sau khi 2 textPath hoàn tất → hiện từng ảnh
-    tl.to(".image", {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      stagger: 0.2, // từng ảnh hiện ra cách nhau
-      ease: "power2.out",
-    });
-
-    // Refresh khi layout đã xong
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-
-    // Cleanup
-    return () => {
-      ScrollTrigger.killAll();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className=" w-screen h-screen relative overflow-hidden transform-gpu"
+      className="w-screen min-h-screen relative overflow-hidden transform-gpu"
     >
-      {/* SVG Paths */}
       <svg
         width="100vw"
         height="100vh"
         viewBox="0 0 600 600"
         className="absolute inset-0 m-auto"
-        style={{ willChange: "auto", transform: "rotate(26deg)" }}
+        style={{ willChange: "transform" }} // Tối ưu hóa will-change
       >
-        {/* Spiral Path */}
         <path
           id="innerSpiral"
           d={getSpiralPath(300, 300, 30, 1.5, 38, 1.2, 0.8)}
@@ -128,79 +119,39 @@ export default function Spiral() {
           stroke="none"
           fill="none"
         />
-
-        {/* TEXT chạy theo path */}
         <text id="Text1" fontSize="40" fill="white" fontWeight="bold">
           <textPath href="#innerSpiral" startOffset="0%">
             SEE YOU ON THE INNER SPIRAL
           </textPath>
         </text>
-
         <text id="Text2" fontSize="40" fill="yellow" fontWeight="bold">
           <textPath href="#outerSpiral">DON&apos;T BLIND!</textPath>
         </text>
       </svg>
-      <div
-        className="hire spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
-        style={{
-          backfaceVisibility: "hidden",
-          top: "40%",
-          left: "7%",
-        }}
-      >
-        <Image
-          src={anh1}
-          alt=""
-          className="image w-full h-full object-contain"
-          priority
-        />
-      </div>
-      <div
-        className="hire spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
-        style={{
-          top: "20%",
-          left: "28%",
-        }}
-      >
-        <Image
-          src={anh2}
-          alt=""
-          className="image w-full h-full object-contain"
-          priority
-        />
-      </div>
 
-      <div
-        className="spiral-img rotate-[-20deg] 2xl:w-[400px] 2xl:h-[400px] absolute w-[300px] h-[300px] transform-gpu"
-        style={{
-          // backfaceVisibility: "hidden",
-          top: "10%",
-          right: "26%",
-        }}
-      >
-        <Image
-          src={anh3}
-          alt=""
-          className="image w-full h-full object-contain"
-          priority
-        />
-      </div>
-
-      <div
-        className="rotate-[20deg] spiral-img absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu"
-        style={{
-          backfaceVisibility: "hidden",
-          top: "40%",
-          right: "10%",
-        }}
-      >
-        <Image
-          src={anh4}
-          alt=""
-          className="image w-full h-full object-contain"
-          priority
-        />
-      </div>
+      {[anh1, anh2, anh3, anh4].map((img, i) => (
+        <div
+          key={i}
+          ref={imageRef} // Thêm ref để tối ưu
+          className={`spiral-img image  absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu ${
+            i === 2 ? "rotate-[-20deg]" : i === 3 ? "rotate-[20deg]" : ""
+          }`}
+          style={{
+            top: i === 0 ? "40%" : i === 1 ? "20%" : i === 2 ? "10%" : "40%",
+            left: i === 0 ? "7%" : i === 1 ? "28%" : "auto",
+            right: i === 2 ? "26%" : i === 3 ? "10%" : "auto",
+            willChange: "transform, opacity", // Tối ưu hóa hiệu suất
+          }}
+        >
+          <Image
+            src={img}
+            alt={`Image ${i + 1}`}
+            className="w-full h-full object-contain"
+            loading="lazy" // Sử dụng lazy loading
+            // quality={75} // Giảm chất lượng để tối ưu
+          />
+        </div>
+      ))}
     </div>
   );
 }

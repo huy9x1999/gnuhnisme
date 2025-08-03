@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function ClockSwing() {
   return (
-    <div className="bg-[#F49AC1] absolute 2xl:right-[4%] right-[0] top-[34%] z-20 w-[8%]">
+    <div className="absolute 2xl:right-[12%] right-[0] top-[34%] z-20 w-[8%]">
       {/* Shadow (blur + trễ) */}
       <motion.div
         className="absolute top-0 left-0 z-0 blur-[2px]"
@@ -36,7 +36,7 @@ export default function ClockSwing() {
       >
         <Image src={Clock} alt="Clock" width={100} height={100} />
       </motion.div>
-      <div className="z-50 bg-[#007DC5] w-10 h-7 rounded-b-full absolute 2xl:right-[27%] right-[20%] -top-2" />
+      <div className="z-50 bg-[#007DC5] w-10 h-7 rounded-b-full absolute 2xl:right-[30%] right-[20%] -top-2" />
     </div>
   );
 }

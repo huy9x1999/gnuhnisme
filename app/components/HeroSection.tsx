@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
 
@@ -12,33 +12,80 @@ import Popup from "@/public/images/popup.svg";
 import bg from "@/public/images/spiral.svg";
 import ClockSwing from "../components/ClockSwing";
 
-export default function HeroSection() {
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
+export default function HeroSection() {
+  const containerRef = useRef(null);
+  const imageRef = useRef(null);
+  const textRef = useRef(null);
+  useLayoutEffect(() => {
+    // Your layout effect code here
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=100%", // Adjust as needed
+          scrub: true,
+          pin: true,
+          pinSpacing: false,
+        },
+      });
+
+      tl.to(
+        imageRef.current,
+        {
+          x: -100,
+          opacity: 0,
+          duration: 4,
+          ease: "power2.out",
+        },
+        "-=3"
+      ).to(textRef.current,{
+        y:-200,
+        opacity: 0,
+        duration: 4,
+        ease: "power2.out",
+      }, "-=3");
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
   return (
     <>
       <SplashScreen />
 
-      <div  className="min-h-screen w-full relative scroll-section overflow-x-hidden">
-        <Image src={bg} alt="char-blue" className="-z-10 w-full h-full absolute top-0 left-0 right-0 bottom-0" />
-        <div
-          className="left-image relative -left-[7%] mt-[50vh] z-10 2xl:w-[65%] w-[52%]"
-         >
-          <div className="group">
-            <Image src={CharBlue} alt="char-blue" />
-            <Image
-              src={Popup}
-              alt="popup"
-              className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 2xl:w-[45%] w-[40%] absolute right-[10%] -top-[25%]"
-            />
+      <div
+        ref={containerRef}
+        className="min-h-screen w-full relative scroll-section overflow-visible"
+      >
+        <div className="left-image relative -left-[7%] pt-[45vh] z-10 2xl:w-[70%] w-[61%]">
+          <div ref={imageRef} className="w-full">
+            <div className="group w-full">
+              <Image className="char-blue" src={CharBlue} alt="char-blue" />
+
+              <Image
+                src={Popup}
+                alt="popup"
+                className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 2xl:w-[45%] w-[40%] absolute right-[10%] -top-[25%]"
+              />
+            </div>
+            <ClockSwing />
           </div>
-          <ClockSwing />
         </div>
 
         {/* Text bên phải */}
-        <div
-          className="right-text absolute z-20 right-12 2xl:top-28 top-20 2xl:w-[50%] w-[43%]"
-         >
-          <Image src={Text1} alt="" />
+        <div ref={textRef} className="right-text absolute z-20 right-12 2xl:top-[150px] top-[10%] 2xl:min-w-[50%] min-w-[43%]">
+          <div className="text-[#FEEE52]">
+            <h3 className="2xl:text-[125px] text-[110px] leading-[140px]">welcome</h3>
+            <h4 className=" text-[56px] leading-[54px]">
+              <span className="font-roboto text-[48px] font-thin">TO THE</span> TRANCE ZONE
+            </h4>
+          </div>
+          {/* <Image src={Text1} alt="" /> */}
           <div className="mt-8 pl-[36%]">
             <Image src={Text2} alt="" />
           </div>

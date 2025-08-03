@@ -3,17 +3,17 @@ export default function MyWorksPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-600 via-blue-500 to-blue-400 relative overflow-hidden">
       {/* Top Logo */}
-      <div className="absolute top-4 left-4 z-10">
+      {/* <div className="absolute top-4 left-4 z-10">
         <div className="bg-yellow-400 text-black px-2 py-1 text-xs font-bold rounded">
           📱 DESIGN
         </div>
-      </div>
+      </div> */}
 
       {/* Top Right Dots */}
-      <div className="absolute top-4 right-4 flex gap-2">
+      {/* <div className="absolute top-4 right-4 flex gap-2">
         <div className="w-3 h-3 bg-white rounded-full"></div>
         <div className="w-3 h-3 bg-white rounded-full"></div>
-      </div>
+      </div> */}
 
       {/* Main Content */}
       <div className="flex flex-col items-center justify-start pt-20 px-8">

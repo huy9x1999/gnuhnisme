@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.2.0",
+    "@studio-freight/lenis": "^1.0.42",
     "canvg": "^4.0.3",
     "framer-motion": "^11.2.12",
     "gsap": "^3.13.0",
@@ -28,7 +29,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5",
+    "vite": "^4.5.2"
   }
 }

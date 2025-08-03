@@ -71,7 +71,7 @@ import bg from "@/public/images/spiral_clean_reverse.gif"; // Đặt ảnh nền
 
 export default function BackgroundSpiral() {
   return (
-    <div className=" fixed w-[calc(100vw-15.5px)] h-screen">
+    <div className="pointer-events-non fixed w-full h-screen">
       <Image
         src={bg} // Đặt ảnh trong thư mục public
         alt="Rotating"

@@ -8,10 +8,10 @@ import Link from 'next/link'
 
 const SupperMenu = () => {
   return (
-    <div className="font-bold text-2xl text-[#007DC5] 2xl:px-9 px-6 2xl:gap-10 gap-6 fixed bottom-6 right-6 rounded-[12px] bg-[#FEEE52] 2xl:min-h-16 min-h-12 flex items-center justify-between">
-          <Link href="/work" className="cursor-pointer 2xl:scale-0 scale-[0.7]"><Image src={TextWorks} alt="" className=""/></Link>
-          <Link href="/" className="cursor-pointer 2xl:scale-0 scale-[0.7]"><Image src={TextHome} alt="" className=""/></Link>
-          <Link href="/" className="cursor-pointer 2xl:scale-0 scale-[0.7]"><Image src={TextContent} alt="" className=""/></Link>
+    <div className="font-bold text-2xl text-[#007DC5]  fixed bottom-6 right-6 rounded-[12px] bg-[#FEEE52]  min-h-12 flex items-center justify-between">
+          <Link href="/work" className="cursor-pointer grow px-5  bg-[#FEEE52] text-[20px] tracking-[1px]">WORK</Link>
+          <Link href="/" className="cursor-pointer grow px-5 bg-[#FEEE52] text-[20px] tracking-[1px]">HOME</Link>
+          <Link href="/" className="cursor-pointer grow px-5 bg-[#FEEE52] text-[20px] tracking-[1px]">CONTACT</Link>
         </div>
   )
 }

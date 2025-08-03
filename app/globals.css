@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -19,8 +21,35 @@
   }
 }
 
+@font-face {
+  font-family: "SidewareTrial"; /* Loại bỏ khoảng trắng hoặc dùng tên đơn giản */
+  src: url('/font/SidewareTrial-Regular.woff2') format('woff2'),
+       url('/font/SidewareTrial-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "SidewareTrial", Arial, Helvetica, sans-serif;
+  scroll-behavior: auto;
+  overflow-x: hidden;
+  overflow: visible;
+}
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.scroll-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.lenis {
+  will-change: transform;
 }
