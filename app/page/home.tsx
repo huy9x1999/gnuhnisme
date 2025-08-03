@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div
       id="scroll-container"
-      className="relative overflow-x-hidden"
+      className="relative overflow-x-hidden "
     >
       {/* <div className="lenis relative will-change-transform"> */}
         <Header />
