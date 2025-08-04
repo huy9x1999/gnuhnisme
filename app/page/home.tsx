@@ -8,7 +8,6 @@ import HeroSection from "../components/HeroSection";
 import Header from "../components/Header";
 import SupperMenu from "../components/SupperMenu";
 import Contact from "../components/Contact";
-import useSmoothScroll from "../hook/useSmoothScroll";
 
 const HomePage = () => {
   // useSmoothScroll();
