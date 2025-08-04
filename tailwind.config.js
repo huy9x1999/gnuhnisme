@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-       sideware: ['"SidewareTrial"', 'sans-serif'],
-        roboto: ['"Roboto"', 'sans-serif'],
+       sideware: ['SidewareTrial', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
     },
   },

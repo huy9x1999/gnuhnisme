@@ -21,29 +21,18 @@ import sec61 from "@/public/images/section-image/sec-6-1.svg";
 import sec62 from "@/public/images/section-image/sec-6-2.svg";
 import sec63 from "@/public/images/section-image/sec-6-3.svg";
 import Image from "next/image";
+import {ScrollChangeHeader} from "@/public/util";
+import Link from "next/link";
 
 export default function MyWorksPage() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useLayoutEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY >= 100); // Nếu cuộn quá 10px
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const stickyClass = scrolled
-    ? "2xl:mt-[10px] -mt-[30px] text-[40px]"
-    : "text-[112px] 2xl:pt-[265px] font-bold pt-[120px]";
+  const {stickyClass} = ScrollChangeHeader();  
   return (
     <div className="min-h-screen bg-[#007DC5] relative overflow-hidden">
       {/* Main Content */}
       <div className="flex flex-col items-center justify-start pt-20 px-8">
         {/* Title */}
         <h1
-          className={`fixed text-[#FEEE52] tracking-wider transition-all duration-500 ${stickyClass} z-10`}
+          className={`fixed text-[#FEEE52] tracking-wider transition-all duration-200 w-full flex items-center justify-center ease-in-out ${stickyClass} z-10`}
         >
           MY WORKS
         </h1>
@@ -52,13 +41,15 @@ export default function MyWorksPage() {
         <div className="flex flex-col 2xl:mt-[600px]  mt-[450px] items-center space-y-8 text-center">
           <div className="flex items-center justify-center relative group h-[50vh] w-[100vw]">
             <div className="z-20 transition-opacity duration-500 text-white group-hover:text-[#FEEE52] group-hover:opacity-100 flex flex-col justify-center items-center 2xl:text-[112px] text-[80px] 2xl:leading-[120px] leading-[82px] font-bold opacity-60">
-              <span className="mb-6 text-[31px] font-roboto leading-[31px]">
+              {}<span className="mb-6 text-[31px] font-roboto leading-[31px]">
                 2025
               </span>
               <p>
-                AURALIS
-                <br />
-                ACADEMY
+                <Link href="/myworks/auralisacademy" className="">
+                  AURALIS
+                  <br />
+                  ACADEMY
+                </Link>
               </p>
             </div>
             <div className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[15%] h-[60%] left-[15%] -top-[1%] object-cover">
