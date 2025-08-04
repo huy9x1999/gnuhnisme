@@ -11,10 +11,11 @@ import img3 from "../../../public/images/auralis/img-3.svg";
 import img4 from "../../../public/images/auralis/img-4.svg";
 import img5 from "../../../public/images/auralis/img-5.svg";
 import footer from "../../../public/images/auralis/footer.svg";
+import Link from "next/link";
 
 const AuralisAcademyPage = () => {
   const { scrolled } = ScrollChangeHeader();
-  const stickyClass = getClassHeadOfMyWorksText(scrolled);
+  const stickyClass = getClassHeadOfMyWorksText({check:scrolled});
   return (
     <div className="min-h-screen relative ">
       <div className="relative bg-[#FFFDEC] z-10 rounded-b-[70px] pb-[120px]">
@@ -119,7 +120,7 @@ const AuralisAcademyPage = () => {
       <div className="relative w-full mt-[-150px] -z-10">
         <Image src={footer} alt="" sizes="100%" />
         <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-[150px] flex justify-center items-center">
-          <p className="text-[130px] text-center text-white">next work</p>
+          <Link href="/myworks/me&you" className=" cursor-pointer text-[130px] text-center text-white">next work</Link>
         </div>
       </div>
     </div>
