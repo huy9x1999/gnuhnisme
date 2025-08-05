@@ -9,12 +9,12 @@ interface Prop {
 
 const Header = ({ check }: Prop) => {
   return (
-    <header className="z-50 2xl:w-auto w-50 fixed left-[66px] 2xl:top-[52px] top-[32px]">
-      <Link href="/" className="cursor-pointer">
+    <header className="z-50 h-[78px] fixed left-[66px] 2xl:top-[52px] top-[32px]">
+      <Link href="/" className="cursor-pointer block h-full">
         {check ? (
-          <Image src={logoBlue} alt="logo" className="w-full" />
+          <Image src={logoBlue} alt="logo" sizes="100%" className="w-full h-full" />
         ) : (
-          <Image src={logo} alt="logo" className="w-full" />
+          <Image src={logo} alt="logo" sizes="100%" className="w-full h-full" />
         )}
       </Link>
     </header>

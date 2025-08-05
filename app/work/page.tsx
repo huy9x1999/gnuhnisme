@@ -70,7 +70,7 @@ export default function MyWorksPage() {
               <span className="mb-6 text-[31px] font-roboto leading-[31px]">
                 2024
               </span>
-              <p>ME&YOU</p>
+              <Link href="/myworks/me&you" className="">ME&YOU</Link>
             </div>
             <div className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[30%] h-[120%] 2xl:left-[4%] left-[10%] bottom-[-50%] object-cover">
               <Image fill src={sec21.src} alt="sec21" />

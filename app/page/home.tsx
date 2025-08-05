@@ -21,8 +21,8 @@ const HomePage = () => {
         <Header />
         <BackgroundSpiral />
         <HeroSection />
-        <SpiralPage />
-        <CloseLest />
+        {/* <SpiralPage /> */}
+        {/* <CloseLest /> */}
         <Contact />
         <SupperMenu />
       {/* </div> */}

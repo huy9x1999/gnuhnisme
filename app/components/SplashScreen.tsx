@@ -35,14 +35,14 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onLoadingComplete }) => {
         >
           {/* Nền tam giác */}
           <motion.div
-            className="bg-top-left absolute top-0 left-0 w-full h-full bg-blue-500"
+            className="bg-top-left absolute top-0 left-0 w-full h-full bg-[#007DC5]"
             style={{ clipPath: 'polygon(0 0, 100% 0, 52% 52%, 0 100%)' }}
             initial={{ x: 0, y: 0 }}
             animate={{ x: '-55vw', y: '-55vh' }}
             transition={commonTransition}
           />
           <motion.div
-            className="bg-bottom-right absolute top-0 left-0 w-full h-full bg-blue-500"
+            className="bg-bottom-right absolute top-0 left-0 w-full h-full bg-[#007DC5]"
             style={{ clipPath: 'polygon(48% 48%, 100% 0, 100% 100%, 0 100%)' }}
             initial={{ x: 0, y: 0 }}
             animate={{ x: '55vw', y: '55vh' }}
@@ -82,13 +82,13 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onLoadingComplete }) => {
           {/* Hai thanh dấu bằng */}
           <div className="transform-3d">
             <motion.div
-              className="bar-left absolute top-1/2 left-1/4 w-[100px] h-[22px] bg-yellow-300 rounded-[4px] -translate-y-[120%] -translate-x-[70%] -rotate-[25deg]"
+              className="bar-left absolute top-1/2 left-1/4 w-[100px] h-[22px] bg-[#FEEE52] rounded-[4px] -translate-y-[120%] -translate-x-[70%] -rotate-[25deg]"
               initial={{ x: 0, y: 0 }}
               animate={{ x: '-60vw', y: '-60vh' }}
               transition={commonTransition}
             />
             <motion.div
-              className="bar-right absolute top-1/2 right-1/4 w-[100px] h-[22px] rounded-[4px] bg-yellow-300 translate-y-[120%] translate-x-[70%] -rotate-[25deg]"
+              className="bar-right absolute top-1/2 right-1/4 w-[100px] h-[22px] rounded-[4px] bg-[#FEEE52] translate-y-[120%] translate-x-[70%] -rotate-[25deg]"
               initial={{ x: 0, y: 0 }}
               animate={{ x: '60vw', y: '60vh' }}
               transition={commonTransition}
