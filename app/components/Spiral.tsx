@@ -194,25 +194,31 @@ export default function Spiral() {
       );
 
       imageRefs.current.forEach((img, i) => {
-        const ends = [0.836, 0.35, 0.29, 0.882]; // vị trí kết thúc tương ứng 4 góc
+  const ends = [0.836, 0.35, 0.29, 0.882];
+  const isInner = i === 0 || i === 1;
+  const path = isInner ? pathRefYellow.current : pathRefBlue.current;
+  if (!path || !img) return;
 
-        const isInner = i === 0 || i === 1;
-        tlText.to(
-          img,
-          {
-            duration: 1,
-            ease: "power2.out",
-            motionPath: {
-              path: isInner ? "#innerSpiral" : "#outerSpiral",
-              align: isInner ? "#innerSpiral" : "#outerSpiral",
-              alignOrigin: [0.5, 0.5],
-              start: 0,
-              end: ends[i],
-            },
-          },
-          "<" // đồng thời
-        );
-      });
+  tlText.to(
+    img,
+    {
+      opacity: 1,
+      ease: "power1.inOut",
+      motionPath: {
+        path: path,
+        align: path,
+        start: 0,
+        end: ends[i],
+        autoRotate: false,
+        alignOrigin: [0.5, 0.5],
+      },
+      duration: 1,
+    },
+    "<"
+  );
+});
+
+
       tlText.to(
         [bgStar1Ref.current, bgStar2Ref.current],
         {
@@ -313,7 +319,9 @@ export default function Spiral() {
             alt={`image-${index}`}
             sizes="h-full"
             priority
-            className={`w-full h-full object-contain ${index ===0 && "relative left-[10vw]"}`}
+            className={`w-full h-full object-contain ${
+              index === 0 && "relative left-[10vw]"
+            }`}
           />
         </div>
       ))}
