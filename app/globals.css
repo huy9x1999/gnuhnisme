@@ -111,9 +111,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "SidewareTrial", Arial, Helvetica, sans-serif;
-  scroll-behavior: auto;
+  /* scroll-behavior: auto; */
   overflow-x: hidden;
   overflow: visible;
+  scroll-behavior: smooth;
 }
 .font-roboto {
   font-family: "Roboto", sans-serif;
@@ -123,6 +124,7 @@ body {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
 }
+
 .scroll-container::-webkit-scrollbar {
   display: none;
 }

@@ -8,8 +8,8 @@ import Link from "next/link";
 
 export default function Contact() {
   return (
-    <div className="relative bg-[#007DC5] w-full h-screen">
-      <div className="2xl:w-[55%] w-[55%] absolute left-0 bottom-0">
+    <div id="contact" className="relative bg-[#007DC5] w-full h-screen">
+      <div className="2xl:w-[50%] w-[50%] absolute left-0 bottom-0">
         <div className="relative">
           <Image className="w-full" alt="" src={CharPing2} />
           <div className="absolute top-[16%] left-[10%] w-[56%]">

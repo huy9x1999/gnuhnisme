@@ -154,7 +154,7 @@ const CloseLest = () => {
         </div>
         <div className="left-[2%] absolute bottom-[4%]">
           <p className="text-[51px] 2xl:text-[70px] leading-[58px] 2xl:mb-8 mb-4 text-white font-roboto italic font-thin">
-            YOU NO BELIEVE I&apos;M THE
+            YOU NOW BELIEVE I&apos;M THE
           </p>
           <p className="text-[60px] 2xl:text-[82px] leading-[60px] 2xl:leading-[81px] text-[#FEEE52]">
             COOLEST DESIGNER
