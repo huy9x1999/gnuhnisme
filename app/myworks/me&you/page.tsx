@@ -50,10 +50,11 @@ const MeYou = () => {
             </div>
             <div className="mt-[45px] relative">
               <p className="2xl:pr-[70px] pr-10 2xl:text-[44px] text-[35px] font-semibold font-roboto  ">
-                Auralis Academy is a spatial design project for deaf children,
-                completed in July 2025. The project explores how playful
-                learning and visual communication can be integrated into
-                educational spaces to support accessibility and inclusivity.
+                The &quot;ME&YOU&quot; project is a unique program designed to help
+                adolescents navigate through this crucial stage of their lives
+                positively and confidently. The project aims to provide
+                knowledge but also to build self-confidence, self-respect, and
+                independence for adolescents going through puberty.
               </p>
             </div>
           </div>
@@ -84,11 +85,11 @@ const MeYou = () => {
           <div className="w-1/2">
             <div className="flex flex-col 2xl:pl-[70px] pr-[40px] mt-[60px] mb-[80px]">
               <p className="font-roboto text-[30px]">
-                &quot;ME&YOU&quot; is a fun pop-up book that helps kids
-                understand what happens to their minds and bodies during
-                puberty. With playful pictures and pop-up surprises, it makes
-                growing up feel less confusing. The book gently encourages
-                sharing, caring, and learning together.
+                &quot;ME&YOU&quot; is a conceptual model inspired by
+                the project logo, symbolizing connection and support during
+                puberty. Its form reflects the emotional and physical changes of
+                adolescence, emphasizing the importance of empathy and
+                companionship through this journey.
               </p>
             </div>
             <div className="ml-10 relative right-0 mb-[100px]">
@@ -115,7 +116,12 @@ const MeYou = () => {
             next work
           </Link>
         </div>
-        <Link href="/myworks/auralisacademy" className="absolute cursor-pointer text-[55px] text-white 2xl:left-[70px] left-10 2xl:bottom-[70px] bottom-10" >PREVIOUS WORK</Link>
+        <Link
+          href="/myworks/auralisacademy"
+          className="absolute cursor-pointer text-[55px] text-white 2xl:left-[70px] left-10 2xl:bottom-[70px] bottom-10"
+        >
+          PREVIOUS WORK
+        </Link>
       </div>
     </div>
   );

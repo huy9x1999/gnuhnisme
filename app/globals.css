@@ -20,6 +20,12 @@
   }
 }
 
+@layer utilities {
+  .text-inter-character {
+    text-justify: inter-character;
+  }
+}
+
 @font-face {
   font-family: "SidewareTrial"; /* Loại bỏ khoảng trắng hoặc dùng tên đơn giản */
   src: url("/font/SidewareTrial-Regular.woff2") format("woff2"),

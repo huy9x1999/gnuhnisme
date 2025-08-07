@@ -82,12 +82,12 @@ const Makeitfun = () => {
       <div className="relative w-full mt-[-150px] z-0">
         <Image priority src={footerImg} alt="" sizes="100%" />
         <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-[150px] flex justify-center items-center">
-          {/* <Link
-            href="/myworks/makeitfun"
+          <Link
+            href="/myworks/auralisacademy"
             className=" cursor-pointer text-[130px] text-center text-white"
           >
             next work
-          </Link> */}
+          </Link>
         </div>
         <Link
           href="/myworks/aodaihue"

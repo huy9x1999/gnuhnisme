@@ -25,7 +25,7 @@ const Cookify = () => {
                   2024
                 </span>
               )}
-              <p className="text-center">ME&YOU</p>
+              <p className="text-center">COOKIFY</p>
             </div>
           </div>
           <div className="2xl:px-[70px] px-[40px] pt-[350px] w-full text-[#0D71BA]">
@@ -72,11 +72,11 @@ const Cookify = () => {
             </div>
             <div className="flex flex-col mt-[40px] mb-[80px]">
               <p className="font-roboto text-[30px]">
-                &quot;ME&YOU&quot; is a fun pop-up book that helps kids
-                understand what happens to their minds and bodies during
-                puberty. With playful pictures and pop-up surprises, it makes
-                growing up feel less confusing. The book gently encourages
-                sharing, caring, and learning together.
+                This app scans ingredients to suggest recipes and recommends
+                local dishes based on the user’s location. It offers smart
+                shopping tools like grocery lists, nearby store suggestions, and
+                delivery options. Users can also earn badges by completing or
+                sharing recipes, making cooking more fun and rewarding.
               </p>
             </div>
             <div className="flex justify-center mx-20">
@@ -108,7 +108,12 @@ const Cookify = () => {
             next work
           </Link>
         </div>
-        <Link href="/myworks/me&you" className="absolute cursor-pointer text-[55px] text-white 2xl:left-[70px] left-10 2xl:bottom-[70px] bottom-10" >PREVIOUS WORK</Link>
+        <Link
+          href="/myworks/me&you"
+          className="absolute cursor-pointer text-[55px] text-white 2xl:left-[70px] left-10 2xl:bottom-[70px] bottom-10"
+        >
+          PREVIOUS WORK
+        </Link>
       </div>
     </div>
   );

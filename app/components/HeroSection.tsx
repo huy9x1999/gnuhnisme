@@ -62,7 +62,7 @@ export default function HeroSection() {
         ref={containerRef}
         className="min-h-screen w-full relative scroll-section overflow-visible"
       >
-        <div className="left-image relative -left-[7%] pt-[45vh] z-10 2xl:w-[70%] w-[61%]">
+        <div className="left-image relative -left-[7%] pt-[45vh] z-10 2xl:w-[57%] w-[61%]">
           <div ref={imageRef} className="w-full">
             <div className="group w-full">
               <Image className="char-blue" src={CharBlue} alt="char-blue" />
@@ -78,16 +78,18 @@ export default function HeroSection() {
         </div>
 
         {/* Text bên phải */}
-        <div ref={textRef} className="right-text absolute z-20 right-12 2xl:top-[150px] top-[10%] 2xl:min-w-[50%] min-w-[43%]">
+        <div ref={textRef} className=" absolute z-20 right-12 2xl:top-[150px] top-[10%]  min-w-[43%]">
           <div className="text-[#FEEE52]">
-            <h3 className="2xl:text-[125px] text-[110px] leading-[140px]">welcome</h3>
-            <h4 className=" text-[56px] leading-[54px]">
-              <span className="font-roboto text-[48px] font-thin">TO THE</span> TRANCE ZONE
+            <h3 className=" text-[150px] leading-[155px]">welcome</h3>
+            <h4 className=" text-[82px] leading-[82px]">
+              <span className="font-roboto text-[63px] font-light text-white">TO THE</span> TRANCE ZONE
             </h4>
           </div>
           {/* <Image src={Text1} alt="" /> */}
-          <div className="mt-8 pl-[36%]">
-            <Image src={Text2} alt="" />
+          <div className="font-roboto text-[#FEEE52] text-[26px] mt-5 2xl:pl-1/2 pl-[36%]">
+            <p ><span className="text-white">I am </span>Hong Nhung</p>
+            <p className="text-white">A graphic designer</p>
+            <p><span className="text-white">based in </span>Hanoi, Vietnam</p>
           </div>
         </div>
       </div>

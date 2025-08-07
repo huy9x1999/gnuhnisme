@@ -2,10 +2,12 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import anh1 from "@/public/images/anh1.svg";
-import anh2 from "@/public/images/anh2.png";
-import anh3 from "@/public/images/anh3.svg";
-import anh4 from "@/public/images/anh4.svg";
+import anh1 from "@/public/images/anh-1.svg";
+import anh2 from "@/public/images/anh-2.svg";
+import anh3 from "@/public/images/anh-3.svg";
+import anh4 from "@/public/images/anh-4.svg";
+import bgStar1 from "@/public/images/bg-star-1.svg";
+import bgStar2 from "@/public/images/bg-star-2.svg";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -39,57 +41,37 @@ export default function Spiral() {
   const starRefYellow = useRef<SVGGElement>(null);
   const pathRefBlue = useRef<SVGPathElement | null>(null);
   const pathRefYellow = useRef<SVGPathElement | null>(null);
-  const TrailBlue = useRef<SVGPathElement | null>(null);
-  const TrailYellow = useRef<SVGPathElement | null>(null);
-  const [pathLengthBlue, setPathLengthBlue] = useState(0);
-  const [pathLengthYellow, setPathLengthYellow] = useState(0);
-
-  useEffect(() => {
-    if (pathRefBlue.current) {
-      setPathLengthBlue(pathRefBlue.current.getTotalLength());
-    }
-    if (pathRefYellow.current) {
-      setPathLengthYellow(pathRefYellow.current.getTotalLength());
-    }
-  }, []);
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const bgStar1Ref = useRef<HTMLDivElement>(null);
+  const bgStar2Ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       if (!containerRef.current) return;
+      if (!pathRefBlue.current) return;
 
-      gsap.set(starRefBlue, { opacity: 0 });
-      gsap.set(starRefYellow, { opacity: 0 });
-      gsap.set([starRefBlue.current, "#TrailBlue"], { opacity: 1 });
-      gsap.set([starRefYellow.current, "#TrailYellow"], { opacity: 1 });
+      gsap.set(starRefBlue.current, { opacity: 0 });
+      gsap.set(starRefYellow.current, { opacity: 0 });
+      // gsap.set([starRefBlue.current, "#TrailBlue"], { opacity: 1 });
+      // gsap.set([starRefYellow.current, "#TrailYellow"], { opacity: 1 });
 
-      const textPath = document.querySelector("#TrailBlue textPath");
+      imageRefs.current.forEach((el) => {
+        if (el) gsap.set(el, { x: 0, y: 0, opacity: 0 });
+      });
+
+      // const textPath = document.querySelector("#TrailBlue textPath");
 
       const tlText = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top",
           pin: true,
-          end: "+=100%",
+          end: "+=200%",
           scrub: 1,
-          markers: true,
-        },
-        onUpdate: () => {
-          const progress = tlText.progress(); // 0 -> 1
-          const yellowTextPath = document.querySelector(
-            "#TrailYellow textPath"
-          );
 
-          const blueTextPath = document.querySelector(
-            "#TrailBlue textPath"
-          );
-          if (yellowTextPath) {
-            yellowTextPath.setAttribute("startOffset", `${progress * 100}%`);
-            blueTextPath?.setAttribute("startOffset", `${progress * 100}%`)
-          }
+          // markers: true,
         },
       });
-
-      console.log(pathLengthBlue);
 
       tlText
         // Star xuất hiện và bắt đầu di chuyển
@@ -103,13 +85,14 @@ export default function Spiral() {
               path: "#outerSpiral",
               align: "#outerSpiral",
               autoRotate: true,
-              start:0,
-              end:1,
+              start: 0,
+              end: 1,
               alignOrigin: [0.5, 0.5],
             },
           },
           "<"
-        ).to(
+        )
+        .to(
           starRefYellow.current,
           {
             opacity: 1,
@@ -118,55 +101,131 @@ export default function Spiral() {
             motionPath: {
               path: "#innerSpiral",
               align: "#innerSpiral",
-              start:0,
-              end:1,
+              start: 0,
+              end: 1,
               autoRotate: true,
               alignOrigin: [0.5, 0.5],
             },
           },
           "<"
         )
-        // Trail xuất hiện sau 0.2s và bắt đầu chạy theo
-        // .to(
-        //   "#TrailBlue path",
-        //   {
-        //     strokeDashoffset: 0,
-        //     opacity: 1,
-        //     ease: "none",
-        //   },
-        //   "<+0.1"
-        // )
-        // .to(
-        //   "#TrailBlue path",
-        //   {
-        //     strokeDashoffset: 0,
-        //     opacity: 1,
-        //     ease: "none",
-        //   },
-        //   "<+0.1"
-        // )
-
-        // Sau khi di chuyển xong, ẩn star & trail
         .to(
-          [starRefBlue.current, "#TrailYellow path"],
+          starRefYellow.current,
           {
-            strokeDashoffset: 0,
-            duration: 1,
-            ease: "power1.out",
+            opacity: 0,
+            ease: "power1.inOut",
+            clearProps: "motionPath",
           },
-          "<+0.1"
+          ">"
         )
-        
+        .to(
+          starRefBlue.current,
+          {
+            opacity: 0,
+            ease: "power1.inOut",
+            clearProps: "motionPath",
+          },
+          "<"
+        );
 
-        // .to([starRefYellow.current, "#TrailYellow textPath"], {
-        //   opacity: 1,
-        //   duration: 1,
-        //   ease: "power1.out",
-        // });
+      tlText.to(
+        starRefYellow.current,
+        {
+          opacity: 1,
+          ease: "power1.inOut",
+          duration: 0.15,
+        },
+        0 // Tăng từ 0 → 1
+      );
+      tlText.to(
+        starRefYellow.current,
+        {
+          opacity: 1,
+          ease: "none",
+          duration: 0.7,
+        },
+        0.1 // Giữ nguyên 1
+      );
+      tlText.to(
+        starRefYellow.current,
+        {
+          opacity: 0,
+          ease: "power1.inOut",
+          duration: 0.15,
+        },
+        0.85 // Giảm từ 1 → 0
+      );
+      tlText.to(
+        starRefBlue.current,
+        {
+          opacity: 1,
+          ease: "power1.inOut",
+          duration: 0.15,
+        },
+        0 // Tăng từ 0 → 1
+      );
+      tlText.to(
+        starRefBlue.current,
+        {
+          opacity: 1,
+          ease: "none",
+          duration: 0.7,
+        },
+        0.1 // Giữ nguyên 1
+      );
+      tlText.to(
+        starRefBlue.current,
+        {
+          opacity: 0,
+          ease: "power1.inOut",
+          duration: 0.15,
+        },
+        0.85 // Giảm từ 1 → 0
+      );
+
+      tlText.to(
+        imageRefs.current,
+        {
+          opacity: 1,
+          ease: "power1.inOut",
+          stagger: 0.1,
+        },
+        ">"
+      );
+
+      imageRefs.current.forEach((img, i) => {
+        const ends = [0.836, 0.35, 0.29, 0.882]; // vị trí kết thúc tương ứng 4 góc
+
+        const isInner = i === 0 || i === 1;
+        tlText.to(
+          img,
+          {
+            duration: 1,
+            ease: "power2.out",
+            motionPath: {
+              path: isInner ? "#innerSpiral" : "#outerSpiral",
+              align: isInner ? "#innerSpiral" : "#outerSpiral",
+              alignOrigin: [0.5, 0.5],
+              start: 0,
+              end: ends[i],
+            },
+          },
+          "<" // đồng thời
+        );
+      });
+      tlText.to(
+        [bgStar1Ref.current, bgStar2Ref.current],
+        {
+          opacity: 1,
+          ease: "power1.inOut",
+          duration: 0.5,
+        },
+        "<+=0.5" // hoặc "imageScroll+=0.5" nếu bạn tách riêng timeline cho ảnh
+      );
     }, containerRef);
 
     return () => ctx.revert();
-  }, [pathLengthBlue, pathLengthYellow]);
+  }, []);
 
   return (
     <div
@@ -184,14 +243,14 @@ export default function Spiral() {
           ref={pathRefYellow}
           id="innerSpiral"
           d={getSpiralPath(300, 300, 20, 1.7, 35, 1, 1)}
-          stroke="yellow"
+          stroke="none"
           fill="none"
         />
         <path
           ref={pathRefBlue}
           id="outerSpiral"
           d={getSpiralPath(300, 300, 20, 1.7, 35, -1, -1)}
-          stroke="red"
+          stroke="none"
           fill="none"
         />
         <g ref={starRefBlue} transform="translate(300, 300) scale(0.5)">
@@ -234,47 +293,55 @@ export default function Spiral() {
             fill="#FEEE52"
           />
         </g>
-
-        <text
-          id="TrailBlue"
-          fontSize="20"
-          fill="#00b4ff"
-          fontFamily="monospace"
-        >
-          <textPath id="TrailTextPath" href="#outerSpiral" startOffset="0%">
-            ____________________________
-          </textPath>
-        </text>
-        <text id="TrailYellow" fontSize="20" fill="#000" fontFamily="monospace">
-          <textPath id="TrailTextPath" href="#innerSpiral" startOffset="0%">
-            ____________________________
-          </textPath>
-        </text>
       </svg>
 
-      {/* {[anh1, anh2, anh3, anh4].map((img, i) => (
+      {[anh1, anh2, anh3, anh4].map((img, index) => (
         <div
-          key={i}
-          ref={imageRef} // Thêm ref để tối ưu
-          className={`spiral-img image  absolute 2xl:w-[400px] 2xl:h-[400px] w-[300px] h-[300px] transform-gpu ${
-            i === 2 ? "rotate-[-20deg]" : i === 3 ? "rotate-[20deg]" : ""
-          }`}
+          key={index}
+          ref={(el) => {
+            imageRefs.current[index] = el;
+          }}
+          className="spiral-img opacity-0 absolute h-[35vh] w-auto transform-gpu"
           style={{
-            top: i === 0 ? "40%" : i === 1 ? "20%" : i === 2 ? "10%" : "40%",
-            left: i === 0 ? "7%" : i === 1 ? "28%" : "auto",
-            right: i === 2 ? "26%" : i === 3 ? "10%" : "auto",
-            willChange: "transform, opacity", // Tối ưu hóa hiệu suất
+            top: "300px",
+            left: "300px",
+            willChange: "transform, opacity",
           }}
         >
           <Image
             src={img}
-            alt={`Image ${i + 1}`}
-            className="w-full h-full object-contain"
-            loading="lazy" // Sử dụng lazy loading
-            // quality={75} // Giảm chất lượng để tối ưu
+            alt={`image-${index}`}
+            sizes="h-full"
+            priority
+            className={`w-full h-full object-contain ${index ===0 && "relative left-[10vw]"}`}
           />
         </div>
-      ))} */}
+      ))}
+
+      <div
+        ref={bgStar1Ref}
+        className="absolute 2xl:bottom-[160px] bottom-[80px] 2xl:left-[134px] left-[40px] w-[165px] h-[190px] opacity-0 transition"
+      >
+        <Image
+          src={bgStar1}
+          alt=""
+          sizes="100%"
+          priority
+          className="w-full h-full object-contain"
+        />
+      </div>
+      <div
+        ref={bgStar2Ref}
+        className="absolute 2xl:top-[160px] top-[80px] 2xl:right-[134px] right-[40px] w-[165px] h-[190px] opacity-0 transition"
+      >
+        <Image
+          src={bgStar2}
+          alt=""
+          sizes="h-full"
+          priority
+          className="w-full h-full object-contain"
+        />
+      </div>
     </div>
   );
 }

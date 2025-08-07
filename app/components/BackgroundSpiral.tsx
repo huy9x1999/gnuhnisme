@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function BackgroundSpiral() {
   return (
     <div className="pointer-events-non fixed w-full h-screen">
-      {/* <video autoPlay muted loop className="w-full h-full object-fill"><source src='/video/spiral.mp4' type="video/mp4"/></video> */}
+      <video autoPlay muted loop className="w-full h-full object-fill"><source src='/video/spiral.mp4' type="video/mp4"/></video>
       {/* <Image
         src={bg} // Đặt ảnh trong thư mục public
         alt="Rotating"
