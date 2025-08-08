@@ -26,7 +26,6 @@ export default function ClientWrapper({
           el.scrollIntoView({ behavior: "smooth" });
         }
       } else {
-        // Nếu không có hash => scroll top
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }, 50); // delay nhỏ để DOM đảm bảo đã mount
