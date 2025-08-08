@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SupperMenu from "../components/SupperMenu";
 import Header from "../components/Header";
+import Contact from "../components/Contact";
 
 export const metadata: Metadata = {
   title: "My Works",
@@ -16,6 +17,7 @@ export default function MyWorkLayout({
           <Header check />
           {children}
           <SupperMenu />
+          <Contact/>
         </div>
   );
 }
