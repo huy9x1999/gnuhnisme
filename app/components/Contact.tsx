@@ -17,22 +17,41 @@ export default function Contact() {
           </div>
         </div>
       </div>
-
-      <div className="2xl:text-[47px] text-[32px] le flex flex-col justify-start gap-5 2xl:leading-[50px] leading-[32px] font-roboto text-[#FEEE52] absolute w-[25%] top-[12%] right-[5%]">
-        <div className="">
-          <p className=" font-bold ">Phone:</p>
-          <p  className=" text-white">+84 888 118 325</p>
+      <div className="flex justify-end w-full  relative pt-[15vh] pr-[10vw]">
+        <div className="w-auto 2xl:text-[47px] text-[32px] flex flex-col justify-start gap-5 2xl:leading-[50px] leading-[32px] font-roboto text-[#FEEE52] ">
+          <div className="">
+            <p className=" font-bold ">Phone:</p>
+            <p className=" text-white">+84 888 118 325</p>
+          </div>
+          <div>
+            <p className=" font-bold">Email:</p>
+            <p className=" text-white">gnuhnisme@gmail.com</p>
+          </div>
+          <div className=" font-bold flex wrap justify-between">
+            <Link
+              href="https://www.linkedin.com/in/gnuhnisme/"
+              target="_bland"
+              className="w-1/2"
+            >
+              Linkedin
+            </Link>
+            <Link
+              href="https://www.instagram.com/gnuhnisme.ds/"
+              target="_bland"
+              className="w-1/2 text-end"
+            >
+              Instagram
+            </Link>
+          </div>
+          <Link
+            target="_bland"
+            href="https://www.behance.net/jinkagamine"
+            className=" font-bold w-full"
+          >
+            Behance
+          </Link>
         </div>
-        <div>
-          <p className=" font-bold">Email:</p>
-          <p className=" text-white">gnuhnisme@gmail.com</p>
-        </div>
-        <div className=" font-bold flex wrap justify-between">
-          <Link href="https://www.linkedin.com/in/gnuhnisme/" target="_bland" className="w-1/2">Linkedin</Link>
-          <Link href="https://www.instagram.com/gnuhnisme.ds/" target="_bland" className="w-1/2 text-end">Instagram</Link>
-        </div>
-        <Link target="_bland" href="https://www.behance.net/jinkagamine" className=" font-bold w-full">Behance</Link>
       </div>
     </div>
   );
-};
+}

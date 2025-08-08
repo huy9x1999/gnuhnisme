@@ -108,7 +108,7 @@ const About = () => {
           </div>
         </div>
         <div className="text-right mt-[150px]">
-            <p className="2xl:text-[112px] text-[#FEEE52]  text-[80px] 2xl:leading-[120px] leading-[84px]">LET&apos;S WORK TOGETHER!</p>
+            <p className="2xl:text-[6vw] text-[#FEEE52]  text-[80px] 2xl:leading-[120px] leading-[84px]">LET&apos;S WORK TOGETHER!</p>
             <p className="font-roboto text-white text-[32px]">Contact me via the information below  </p>
         </div>
       </div>

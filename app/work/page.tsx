@@ -40,18 +40,18 @@ export default function MyWorksPage() {
         {/* Works List */}
         <div className="flex flex-col 2xl:mt-[600px]  mt-[450px] items-center space-y-8 text-center">
           <div className="flex items-center justify-center relative group h-[50vh] w-[100vw]">
-            <Link href="/myworks/auralisacademy" className="z-20 transition-opacity duration-500 text-white group-hover:text-[#FEEE52] group-hover:opacity-100 flex flex-col justify-center items-center 2xl:text-[112px] text-[80px] 2xl:leading-[120px] leading-[82px] font-bold opacity-60">
+            <div className="z-20 transition-opacity duration-500 text-white group-hover:text-[#FEEE52] group-hover:opacity-100 flex flex-col justify-center items-center 2xl:text-[112px] text-[80px] 2xl:leading-[120px] leading-[82px] font-bold opacity-60">
               {}<span className="mb-6 text-[31px] font-roboto leading-[31px]">
                 2025
               </span>
-              <p>
+              <Link href="/myworks/auralisacademy">
                 <p className="">
                   AURALIS
                   <br />
                   ACADEMY
                 </p>
-              </p>
-            </Link>
+              </Link>
+            </div>
             <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[15%] h-[60%] left-[15%] -top-[1%] object-cover">
               <Image fill src={sec11.src} alt="sec61" />
             </Link>
@@ -72,13 +72,13 @@ export default function MyWorksPage() {
               </span>
               <Link href="/myworks/me&you" className="">ME&YOU</Link>
             </div>
-            <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[30%] h-[120%] 2xl:left-[4%] left-[10%] bottom-[-50%] object-cover">
+            <Link href="/myworks/me&you" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[30%] h-[120%] 2xl:left-[4%] left-[10%] bottom-[-50%] object-cover">
               <Image fill src={sec21.src} alt="sec21" />
             </Link>
-            <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[40%] h-[130%] 2xl:right-[4%] -right-[2%] top-[-66%]">
+            <Link href="/myworks/me&you" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[40%] h-[130%] 2xl:right-[4%] -right-[2%] top-[-66%]">
               <Image fill src={sec22.src} alt="sec61" />
             </Link>
-            <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[40%] h-[90%] 2xl:right-[6%] right-[10%] bottom-[-36%]">
+            <Link href="/myworks/me&you" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[40%] h-[90%] 2xl:right-[6%] right-[10%] bottom-[-36%]">
               <Image fill src={sec23.src} alt="sec61" />
             </Link>
           </div>
@@ -87,14 +87,14 @@ export default function MyWorksPage() {
               <span className="mb-6 text-[31px] font-roboto leading-[31px]">
                 2023
               </span>
-              <Link href="/myworks/cook">COOKIFY</Link>
-              <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[40%] h-[160%] 2xl:left-[4%] left-[0%] bottom-[-50%] object-cover">
+              <Link href="/myworks/cookify">COOKIFY</Link>
+              <Link href="/myworks/cookify" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[40%] h-[160%] 2xl:left-[4%] left-[0%] bottom-[-50%] object-cover">
                 <Image fill src={sec31.src} alt="sec21" />
               </Link>
-              <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[35%] h-[130%] 2xl:right-[4%] right-[5%] top-[-30%]">
+              <Link href="/myworks/cookify" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[35%] h-[130%] 2xl:right-[4%] right-[5%] top-[-30%]">
                 <Image fill src={sec32.src} alt="sec61" />
               </Link>
-              <Link href="/myworks/auralisacademy" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[35%] h-[140%] right-[20%] bottom-[-50%]">
+              <Link href="/myworks/cookify" className="group-hover:opacity-100 duration-300 opacity-0 absolute w-[35%] h-[140%] right-[20%] bottom-[-50%]">
                 <Image fill src={sec33.src} alt="sec61" />
               </Link>
             </div>

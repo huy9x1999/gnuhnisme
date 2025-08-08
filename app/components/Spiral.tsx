@@ -11,6 +11,7 @@ import bgStar2 from "@/public/images/bg-star-2.svg";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -194,30 +195,29 @@ export default function Spiral() {
       );
 
       imageRefs.current.forEach((img, i) => {
-  const ends = [0.836, 0.35, 0.29, 0.882];
-  const isInner = i === 0 || i === 1;
-  const path = isInner ? pathRefYellow.current : pathRefBlue.current;
-  if (!path || !img) return;
+        const ends = [0.836, 0.35, 0.29, 0.882];
+        const isInner = i === 0 || i === 1;
+        const path = isInner ? pathRefYellow.current : pathRefBlue.current;
+        if (!path || !img) return;
 
-  tlText.to(
-    img,
-    {
-      opacity: 1,
-      ease: "power1.inOut",
-      motionPath: {
-        path: path,
-        align: path,
-        start: 0,
-        end: ends[i],
-        autoRotate: false,
-        alignOrigin: [0.5, 0.5],
-      },
-      duration: 1,
-    },
-    "<"
-  );
-});
-
+        tlText.to(
+          img,
+          {
+            opacity: 1,
+            ease: "power1.inOut",
+            motionPath: {
+              path: path,
+              align: path,
+              start: 0,
+              end: ends[i],
+              autoRotate: false,
+              alignOrigin: [0.5, 0.5],
+            },
+            duration: 1,
+          },
+          "<"
+        );
+      });
 
       tlText.to(
         [bgStar1Ref.current, bgStar2Ref.current],
@@ -301,7 +301,12 @@ export default function Spiral() {
         </g>
       </svg>
 
-      {[anh1, anh2, anh3, anh4].map((img, index) => (
+      {[
+        { img: anh1, link: "/myworks/auralisacademy" },
+        { img: anh2, link: "/myworks/cookify" },
+        { img: anh3, link: "/myworks/me&you" },
+        { img: anh4, link: "/myworks/babysteps" },
+      ].map((item, index) => (
         <div
           key={index}
           ref={(el) => {
@@ -314,15 +319,17 @@ export default function Spiral() {
             willChange: "transform, opacity",
           }}
         >
-          <Image
-            src={img}
-            alt={`image-${index}`}
-            sizes="h-full"
-            priority
-            className={`w-full h-full object-contain ${
-              index === 0 && "relative left-[10vw]"
-            }`}
-          />
+          <Link href={item.link}>
+            <Image
+              src={item.img}
+              alt={`image-${index}`}
+              sizes="h-full"
+              priority
+              className={`w-full h-full object-contain ${
+                index === 0 && "relative left-[10vw]"
+              }`}
+            />
+          </Link>
         </div>
       ))}
 

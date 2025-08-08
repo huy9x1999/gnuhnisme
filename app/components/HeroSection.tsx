@@ -78,7 +78,7 @@ export default function HeroSection() {
         </div>
 
         {/* Text bên phải */}
-        <div ref={textRef} className=" absolute z-20 right-12 2xl:top-[150px] top-[10%]  min-w-[43%]">
+        <div ref={textRef} className=" absolute z-20 right-12 2xl:top-[120px] top-[8%]  min-w-[43%]">
           <div className="text-[#FEEE52]">
             <h3 className=" text-[150px] leading-[155px]">welcome</h3>
             <h4 className=" text-[82px] leading-[82px]">

@@ -41,11 +41,11 @@ const MeYou = () => {
             />
             <div className="mt-10 text-end font-roboto text-[30px] leading-[34px]">
               <p className="">
-                <span className="font-semibold">Type of work: </span>
-                <span className="text">Branding publication</span>
+                <span className="font-medium">Type of work: </span>
+                <span className="font-extralight">Branding publication</span>
               </p>
-              <p>
-                <span>Year:</span> 2024
+              <p className="font-extralight">
+                <span className="font-medium">Year:</span> 2024
               </p>
             </div>
             <div className="mt-[45px] relative">
