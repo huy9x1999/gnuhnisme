@@ -2,10 +2,10 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import anh1 from "@/public/images/anh-1.svg";
-import anh2 from "@/public/images/anh-2.svg";
-import anh3 from "@/public/images/anh-3.svg";
-import anh4 from "@/public/images/anh-4.svg";
+import anh1 from "@/public/images/anh-1.webp";
+import anh2 from "@/public/images/anh-2.webp";
+import anh3 from "@/public/images/anh-3.webp";
+import anh4 from "@/public/images/anh-4.webp";
 import bgStar1 from "@/public/images/bg-star-1.svg";
 import bgStar2 from "@/public/images/bg-star-2.svg";
 import gsap from "gsap";

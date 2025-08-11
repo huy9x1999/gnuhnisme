@@ -2,10 +2,10 @@
 import { getClassHeadOfMyWorksText, ScrollChangeHeader } from "@/public/util";
 import Image from "next/image";
 import React from "react";
-import bg from "../../../public/images/aodaihue/bg.svg";
-import img1 from "../../../public/images/aodaihue/img-1.svg";
-import img2 from "../../../public/images/aodaihue/img-2.svg";
-import footerImg from "../../../public/images/aodaihue/footer-img.svg";
+import bg from "../../../public/images/aodaihue/bg.png";
+import img1 from "../../../public/images/aodaihue/img-1.png";
+import img2 from "../../../public/images/aodaihue/img-2.png";
+import footerImg from "../../../public/images/aodaihue/footer-img.png";
 import Link from "next/link";
 
 const Aodaihue = () => {

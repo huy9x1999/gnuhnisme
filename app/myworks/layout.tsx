@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Contact from "../components/Contact";
 
 export const metadata: Metadata = {
-  title: "My Works",
+  title: "gnuhnisme's works",
 };
 
 export default function MyWorkLayout({

@@ -2,11 +2,11 @@
 import { getClassHeadOfMyWorksText, ScrollChangeHeader } from "@/public/util";
 import Image from "next/image";
 import React from "react";
-import bg from "../../../public/images/cookify/bg.svg";
-import img1 from "../../../public/images/cookify/img-1.svg";
+import bg from "../../../public/images/cookify/bg.png";
+import img1 from "../../../public/images/cookify/img-1.png";
 import img2 from "../../../public/images/cookify/img-2.svg";
 import img3 from "../../../public/images/cookify/img-3.svg";
-import footerImg from "../../../public/images/cookify/footer-img.svg";
+import footerImg from "../../../public/images/cookify/footer-img.png";
 import Link from "next/link";
 
 const Cookify = () => {
@@ -99,7 +99,7 @@ const Cookify = () => {
         </div>
       </div>
       <div className="relative w-full mt-[-150px] z-0">
-        <Image priority src={footerImg} alt="" sizes="100%" />
+        <Image priority src={footerImg} alt="" sizes="100%" className="w-full object-cover"/>
         <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-[150px] flex justify-center items-center">
           <Link
             href="/myworks/babysteps"

@@ -2,10 +2,10 @@
 import { getClassHeadOfMyWorksText, ScrollChangeHeader } from "@/public/util";
 import Image from "next/image";
 import React from "react";
-import bg from "../../../public/images/makeitfun/bg.svg";
-import img1 from "../../../public/images/makeitfun/img-1.svg";
-import img2 from "../../../public/images/makeitfun/img-2.svg";
-import footerImg from "../../../public/images/makeitfun/footer-img.svg";
+import bg from "../../../public/images/makeitfun/bg.png";
+import img1 from "../../../public/images/makeitfun/img-1.png";
+import img2 from "../../../public/images/makeitfun/img-2.png";
+import footerImg from "../../../public/images/makeitfun/footer-img.png";
 import Link from "next/link";
 
 const Makeitfun = () => {

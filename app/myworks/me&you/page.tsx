@@ -2,14 +2,14 @@
 import { getClassHeadOfMyWorksText, ScrollChangeHeader } from "@/public/util";
 import Image from "next/image";
 import React from "react";
-import bg from "../../../public/images/me-you/bg.svg";
-import img1 from "../../../public/images/me-you/img-1.svg";
-import img2 from "../../../public/images/me-you/img-2.svg";
-import img3 from "../../../public/images/me-you/img-3.svg";
-import img4 from "../../../public/images/me-you/img-4.svg";
-import img5 from "../../../public/images/me-you/img-5.svg";
-import img6 from "../../../public/images/me-you/img-6.svg";
-import footerImg from "../../../public/images/me-you/footer-img.svg";
+import bg from "../../../public/images/me-you/bg.png";
+import img1 from "../../../public/images/me-you/img-1.png";
+import img2 from "../../../public/images/me-you/img-2.png";
+import img3 from "../../../public/images/me-you/img-3.png";
+import img4 from "../../../public/images/me-you/img-4.png";
+import img5 from "../../../public/images/me-you/img-5.png";
+import img6 from "../../../public/images/me-you/img-6.png";
+import footerImg from "../../../public/images/me-you/footer-img.png";
 import Link from "next/link";
 
 const MeYou = () => {
@@ -49,7 +49,7 @@ const MeYou = () => {
               </p>
             </div>
             <div className="mt-[45px] relative">
-              <p className="2xl:pr-[70px] pr-10 2xl:text-[44px] text-[35px] font-semibold font-roboto  ">
+              <p className="2xl:pr-[70px] pr-10 2xl:text-[44px] text-[35px] font-medium font-roboto  ">
                 The &quot;ME&YOU&quot; project is a unique program designed to help
                 adolescents navigate through this crucial stage of their lives
                 positively and confidently. The project aims to provide
@@ -107,7 +107,7 @@ const MeYou = () => {
         </div>
       </div>
       <div className="relative w-full mt-[-150px] z-0">
-        <Image priority src={footerImg} alt="" sizes="100%" />
+        <Image priority src={footerImg} alt="" sizes="100%" className="w-full object-cover"/>
         <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-[150px] flex justify-center items-center">
           <Link
             href="/myworks/cookify"

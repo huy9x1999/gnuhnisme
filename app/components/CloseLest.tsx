@@ -141,13 +141,13 @@ const CloseLest = () => {
         className="bg-[#007DC5] w-screen h-screen overflow-hidden"
       >
         <div className="absolute w-[45%] -translate-x-1/2 left-1/2 h-[40vh] top-[8%] flex justify-between">
-          <div className="h-[100%] aspect-square rounded-full overflow-hidden">
-            <video autoPlay muted loop className="w-auto h-full object-cover">
+          <div className="aspect-square rounded-full overflow-hidden translate-z-0">
+            <video autoPlay muted loop className="absolute inset-0 w-full h-full object-cover">
               <source src="/video/spiral.mp4" type="video/mp4" />
             </video>
           </div>
-          <div className="h-[100%] aspect-square rounded-full overflow-hidden">
-            <video autoPlay muted loop className="w-auto h-full object-cover">
+          <div className="aspect-square rounded-full overflow-hidden translate-z-0">
+            <video autoPlay muted loop className="absolute inset-0 w-full h-full object-cover">
               <source src="/video/spiral.mp4" type="video/mp4" />
             </video>
           </div>
