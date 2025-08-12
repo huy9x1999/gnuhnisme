@@ -10,6 +10,9 @@ module.exports = {
        sideware: ['SidewareTrial', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
       },
+      screen:{
+        extraXl:'1600px'
+      }
     },
   },
   plugins: [],

@@ -17,7 +17,7 @@ const About = () => {
             />
           </div>
           <div className="grow text-white">
-            <h3 className=" text-[#FEEE52] 2xl:text-[60px] text-[46px]">
+            <h3 className=" text-[#FEEE52] whitespace-nowrap 2xl:text-[60px] text-[46px]">
               HI, I&apos;M HONG NHUNG
             </h3>
             <p className="font-roboto text-[30px] leading-[32px]">
