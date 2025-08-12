@@ -49,7 +49,7 @@ const About = () => {
               </div>
             </div>
             <div className="flex-1">
-              <h4 className="text-[#FEEE52]  text-[36px]">TECHNIQUE SKILL</h4>
+              <h4 className="text-[#FEEE52] whitespace-nowrap text-[36px]">TECHNIQUE SKILL</h4>
               <div className="text-[21px] font-light text-white font-roboto mt-[26px]">
                 <p>Design thinking</p>
                 <p>Illustrator</p>
@@ -89,7 +89,7 @@ const About = () => {
             </div>
             <div className="flex-1">
               <div className="mb-[110px]">
-                <h4 className="text-[#FEEE52]  text-[36px] ">INTERESTED IN</h4>
+                <h4 className="text-[#FEEE52]  text-[36px] whitespace-nowrap">INTERESTED IN</h4>
                 <div className="text-[21px] font-light text-white font-roboto mt-[26px]">
                   <p>Branding & identity</p>
                   <p>UIUX</p>
@@ -107,8 +107,8 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="text-right mt-[150px]">
-            <p className="2xl:text-[6vw] text-[#FEEE52]  text-[80px] 2xl:leading-[120px] leading-[84px]">LET&apos;S WORK TOGETHER!</p>
+        <div className="text-right whitespace-nowrap mt-[150px]">
+            <p className="2xl:text-[6vw] text-[#FEEE52]  text-[80px] 2xl:leading-[120px]  leading-[84px]">LET&apos;S WORK TOGETHER!</p>
             <p className="font-roboto text-white text-[32px]">Contact me via the information below  </p>
         </div>
       </div>
